@@ -60,11 +60,11 @@ object WikiEditsFlink extends App with StrictLogging{
 
   val groupByTable: Table = bsTableEnv
     .sqlQuery(
-      s"""SELECT title,
+      s"""SELECT user,
          | count(1) as edits
          | FROM $sourceTableWithTime
          | group by
-         | title,
+         | user,
          | TUMBLE(ts,INTERVAL '1' MINUTE)
          | """.stripMargin)
 
